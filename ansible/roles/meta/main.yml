@@ -1,0 +1,14 @@
+galaxy_info:
+  author: moeid
+  description: this ansible code will install kind on your system as well as create or delete clusters for you
+  company: "moeid-company"
+  license: GPL-3.0-only
+  min_ansible_version: "2.7"
+  platforms:
+    - name: Debian
+      versions:
+        - all
+
+  galaxy_tags: []
+
+dependencies: []
