@@ -1,0 +1,15 @@
+{
+  "language": "java",
+  "app": "mvn -e -q compile exec:java",
+  "projectId": "96c3abcd-719f-4853-ab94-40ac160c87da",
+  "sendCrashReports": "false",
+  "terraformProviders": [
+    "kubernetes@~> 2.14.0",
+    "hashicorp/helm@~> 2.1.2"
+  ],
+  "terraformModules": [],
+  "context": {
+    "excludeStackIdFromLogicalIds": "true",
+    "allowSepCharsInLogicalIds": "true"
+  }
+}

@@ -1,0 +1,228 @@
+package imports.kubernetes;
+
+@javax.annotation.Generated(value = "jsii-pacmak/1.63.2 (build a8a8833)", date = "2022-11-04T11:35:40.196Z")
+@software.amazon.jsii.Jsii(module = imports.kubernetes.$Module.class, fqn = "kubernetes.MutatingWebhookConfigurationV1WebhookRule")
+@software.amazon.jsii.Jsii.Proxy(MutatingWebhookConfigurationV1WebhookRule.Jsii$Proxy.class)
+public interface MutatingWebhookConfigurationV1WebhookRule extends software.amazon.jsii.JsiiSerializable {
+
+    /**
+     * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/kubernetes/r/mutating_webhook_configuration_v1#api_groups MutatingWebhookConfigurationV1#api_groups}.
+     */
+    @org.jetbrains.annotations.NotNull java.util.List<java.lang.String> getApiGroups();
+
+    /**
+     * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/kubernetes/r/mutating_webhook_configuration_v1#api_versions MutatingWebhookConfigurationV1#api_versions}.
+     */
+    @org.jetbrains.annotations.NotNull java.util.List<java.lang.String> getApiVersions();
+
+    /**
+     * Operations is the operations the admission hook cares about - CREATE, UPDATE, DELETE, CONNECT or * for all of those operations and any future admission operations that are added.
+     * <p>
+     * If '*' is present, the length of the slice must be one. Required.
+     * <p>
+     * Docs at Terraform Registry: {&#64;link https://www.terraform.io/docs/providers/kubernetes/r/mutating_webhook_configuration_v1#operations MutatingWebhookConfigurationV1#operations}
+     */
+    @org.jetbrains.annotations.NotNull java.util.List<java.lang.String> getOperations();
+
+    /**
+     * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/kubernetes/r/mutating_webhook_configuration_v1#resources MutatingWebhookConfigurationV1#resources}.
+     */
+    @org.jetbrains.annotations.NotNull java.util.List<java.lang.String> getResources();
+
+    /**
+     * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/kubernetes/r/mutating_webhook_configuration_v1#scope MutatingWebhookConfigurationV1#scope}.
+     */
+    default @org.jetbrains.annotations.Nullable java.lang.String getScope() {
+        return null;
+    }
+
+    /**
+     * @return a {@link Builder} of {@link MutatingWebhookConfigurationV1WebhookRule}
+     */
+    static Builder builder() {
+        return new Builder();
+    }
+    /**
+     * A builder for {@link MutatingWebhookConfigurationV1WebhookRule}
+     */
+    public static final class Builder implements software.amazon.jsii.Builder<MutatingWebhookConfigurationV1WebhookRule> {
+        java.util.List<java.lang.String> apiGroups;
+        java.util.List<java.lang.String> apiVersions;
+        java.util.List<java.lang.String> operations;
+        java.util.List<java.lang.String> resources;
+        java.lang.String scope;
+
+        /**
+         * Sets the value of {@link MutatingWebhookConfigurationV1WebhookRule#getApiGroups}
+         * @param apiGroups Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/kubernetes/r/mutating_webhook_configuration_v1#api_groups MutatingWebhookConfigurationV1#api_groups}. This parameter is required.
+         * @return {@code this}
+         */
+        public Builder apiGroups(java.util.List<java.lang.String> apiGroups) {
+            this.apiGroups = apiGroups;
+            return this;
+        }
+
+        /**
+         * Sets the value of {@link MutatingWebhookConfigurationV1WebhookRule#getApiVersions}
+         * @param apiVersions Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/kubernetes/r/mutating_webhook_configuration_v1#api_versions MutatingWebhookConfigurationV1#api_versions}. This parameter is required.
+         * @return {@code this}
+         */
+        public Builder apiVersions(java.util.List<java.lang.String> apiVersions) {
+            this.apiVersions = apiVersions;
+            return this;
+        }
+
+        /**
+         * Sets the value of {@link MutatingWebhookConfigurationV1WebhookRule#getOperations}
+         * @param operations Operations is the operations the admission hook cares about - CREATE, UPDATE, DELETE, CONNECT or * for all of those operations and any future admission operations that are added. This parameter is required.
+         *                   If '*' is present, the length of the slice must be one. Required.
+         *                   <p>
+         *                   Docs at Terraform Registry: {&#64;link https://www.terraform.io/docs/providers/kubernetes/r/mutating_webhook_configuration_v1#operations MutatingWebhookConfigurationV1#operations}
+         * @return {@code this}
+         */
+        public Builder operations(java.util.List<java.lang.String> operations) {
+            this.operations = operations;
+            return this;
+        }
+
+        /**
+         * Sets the value of {@link MutatingWebhookConfigurationV1WebhookRule#getResources}
+         * @param resources Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/kubernetes/r/mutating_webhook_configuration_v1#resources MutatingWebhookConfigurationV1#resources}. This parameter is required.
+         * @return {@code this}
+         */
+        public Builder resources(java.util.List<java.lang.String> resources) {
+            this.resources = resources;
+            return this;
+        }
+
+        /**
+         * Sets the value of {@link MutatingWebhookConfigurationV1WebhookRule#getScope}
+         * @param scope Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/kubernetes/r/mutating_webhook_configuration_v1#scope MutatingWebhookConfigurationV1#scope}.
+         * @return {@code this}
+         */
+        public Builder scope(java.lang.String scope) {
+            this.scope = scope;
+            return this;
+        }
+
+        /**
+         * Builds the configured instance.
+         * @return a new instance of {@link MutatingWebhookConfigurationV1WebhookRule}
+         * @throws NullPointerException if any required attribute was not provided
+         */
+        @Override
+        public MutatingWebhookConfigurationV1WebhookRule build() {
+            return new Jsii$Proxy(this);
+        }
+    }
+
+    /**
+     * An implementation for {@link MutatingWebhookConfigurationV1WebhookRule}
+     */
+    @software.amazon.jsii.Internal
+    final class Jsii$Proxy extends software.amazon.jsii.JsiiObject implements MutatingWebhookConfigurationV1WebhookRule {
+        private final java.util.List<java.lang.String> apiGroups;
+        private final java.util.List<java.lang.String> apiVersions;
+        private final java.util.List<java.lang.String> operations;
+        private final java.util.List<java.lang.String> resources;
+        private final java.lang.String scope;
+
+        /**
+         * Constructor that initializes the object based on values retrieved from the JsiiObject.
+         * @param objRef Reference to the JSII managed object.
+         */
+        protected Jsii$Proxy(final software.amazon.jsii.JsiiObjectRef objRef) {
+            super(objRef);
+            this.apiGroups = software.amazon.jsii.Kernel.get(this, "apiGroups", software.amazon.jsii.NativeType.listOf(software.amazon.jsii.NativeType.forClass(java.lang.String.class)));
+            this.apiVersions = software.amazon.jsii.Kernel.get(this, "apiVersions", software.amazon.jsii.NativeType.listOf(software.amazon.jsii.NativeType.forClass(java.lang.String.class)));
+            this.operations = software.amazon.jsii.Kernel.get(this, "operations", software.amazon.jsii.NativeType.listOf(software.amazon.jsii.NativeType.forClass(java.lang.String.class)));
+            this.resources = software.amazon.jsii.Kernel.get(this, "resources", software.amazon.jsii.NativeType.listOf(software.amazon.jsii.NativeType.forClass(java.lang.String.class)));
+            this.scope = software.amazon.jsii.Kernel.get(this, "scope", software.amazon.jsii.NativeType.forClass(java.lang.String.class));
+        }
+
+        /**
+         * Constructor that initializes the object based on literal property values passed by the {@link Builder}.
+         */
+        protected Jsii$Proxy(final Builder builder) {
+            super(software.amazon.jsii.JsiiObject.InitializationMode.JSII);
+            this.apiGroups = java.util.Objects.requireNonNull(builder.apiGroups, "apiGroups is required");
+            this.apiVersions = java.util.Objects.requireNonNull(builder.apiVersions, "apiVersions is required");
+            this.operations = java.util.Objects.requireNonNull(builder.operations, "operations is required");
+            this.resources = java.util.Objects.requireNonNull(builder.resources, "resources is required");
+            this.scope = builder.scope;
+        }
+
+        @Override
+        public final java.util.List<java.lang.String> getApiGroups() {
+            return this.apiGroups;
+        }
+
+        @Override
+        public final java.util.List<java.lang.String> getApiVersions() {
+            return this.apiVersions;
+        }
+
+        @Override
+        public final java.util.List<java.lang.String> getOperations() {
+            return this.operations;
+        }
+
+        @Override
+        public final java.util.List<java.lang.String> getResources() {
+            return this.resources;
+        }
+
+        @Override
+        public final java.lang.String getScope() {
+            return this.scope;
+        }
+
+        @Override
+        @software.amazon.jsii.Internal
+        public com.fasterxml.jackson.databind.JsonNode $jsii$toJson() {
+            final com.fasterxml.jackson.databind.ObjectMapper om = software.amazon.jsii.JsiiObjectMapper.INSTANCE;
+            final com.fasterxml.jackson.databind.node.ObjectNode data = com.fasterxml.jackson.databind.node.JsonNodeFactory.instance.objectNode();
+
+            data.set("apiGroups", om.valueToTree(this.getApiGroups()));
+            data.set("apiVersions", om.valueToTree(this.getApiVersions()));
+            data.set("operations", om.valueToTree(this.getOperations()));
+            data.set("resources", om.valueToTree(this.getResources()));
+            if (this.getScope() != null) {
+                data.set("scope", om.valueToTree(this.getScope()));
+            }
+
+            final com.fasterxml.jackson.databind.node.ObjectNode struct = com.fasterxml.jackson.databind.node.JsonNodeFactory.instance.objectNode();
+            struct.set("fqn", om.valueToTree("kubernetes.MutatingWebhookConfigurationV1WebhookRule"));
+            struct.set("data", data);
+
+            final com.fasterxml.jackson.databind.node.ObjectNode obj = com.fasterxml.jackson.databind.node.JsonNodeFactory.instance.objectNode();
+            obj.set("$jsii.struct", struct);
+
+            return obj;
+        }
+
+        @Override
+        public final boolean equals(final Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            MutatingWebhookConfigurationV1WebhookRule.Jsii$Proxy that = (MutatingWebhookConfigurationV1WebhookRule.Jsii$Proxy) o;
+
+            if (!apiGroups.equals(that.apiGroups)) return false;
+            if (!apiVersions.equals(that.apiVersions)) return false;
+            if (!operations.equals(that.operations)) return false;
+            if (!resources.equals(that.resources)) return false;
+            return this.scope != null ? this.scope.equals(that.scope) : that.scope == null;
+        }
+
+        @Override
+        public final int hashCode() {
+            int result = this.apiGroups.hashCode();
+            result = 31 * result + (this.apiVersions.hashCode());
+            result = 31 * result + (this.operations.hashCode());
+            result = 31 * result + (this.resources.hashCode());
+            result = 31 * result + (this.scope != null ? this.scope.hashCode() : 0);
+            return result;
+        }
+    }
+}
