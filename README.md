@@ -11,7 +11,7 @@ This is a tutorial about automated deployment to kubernetes cluster.
   
 - Deploy Argocd
   
-- Create a Helm repository on github page and push k8s-hello react app as a helm package.
+- Create a Helm repository on github pages and push k8s-hello react app as a helm package.
   
 
 ![hellok8spng](https://github.com/devopshobbies/appwrite-deployment/blob/main/assets/images/hello-k8s.png)
