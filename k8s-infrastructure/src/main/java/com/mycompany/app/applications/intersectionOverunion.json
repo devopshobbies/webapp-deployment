@@ -1,0 +1,32 @@
+{
+  "apiVersion": "argoproj.io/v1alpha1",
+  "kind": "Application",
+  "metadata": {
+    "name": "hello-k8s",
+    "namespace": "default"
+  },
+  "spec": {
+    "destination": {
+      "namespace": "default",
+      "server": "https://kubernetes.default.svc"
+    },
+    "project": "default",
+    "source": {
+      "helm": {
+        "parameters": null
+      },
+      "chart": "hello-k8s",
+      "repoURL": "https://devopshobbies.github.io/k8s-hello-chart/",
+      "targetRevision": "0.1.1"
+    },
+    "syncPolicy": {
+      "automated": {
+        "prune": true,
+        "selfHeal": true
+      },
+      "syncOptions": [
+        "CreateNamespace=true"
+      ]
+    }
+  }
+}
