@@ -1,7 +1,5 @@
 package com.mycompany.app.stacks.webapp;
 
-import com.hashicorp.cdktf.ITerraformDependable;
-import com.hashicorp.cdktf.TerraformResource;
 import com.mycompany.app.stacks.IInfrastructure;
 import imports.helm.*;
 import imports.kubernetes.Manifest;
@@ -63,22 +61,22 @@ public class WebappInfrastructure implements IInfrastructure {
 
     @Override
     public String argocdDeploy(String name, String version, List<String> vars) {
-        new Release(construct,name, ReleaseConfig.builder().chart("argo-cd").version(version).repository("https://charts.bitnami.com/bitnami").values(vars).name(name).build());
+        this.argocdRelease=new Release(construct,name, ReleaseConfig.builder().chart("argo-cd").version(version).repository("https://charts.bitnami.com/bitnami").values(vars).name(name).build());
         return null;
     }
 
     @Override
     public String prometheus(String name, String version, List<String> vars) {
 
-        this.argocdRelease=new Release(construct,name, ReleaseConfig.builder().chart("kube-prometheus").version(version).repository("https://charts.bitnami.com/bitnami").values(vars).name(name).build());
+        new Release(construct,name, ReleaseConfig.builder().chart("kube-prometheus").version(version).repository("https://charts.bitnami.com/bitnami").values(vars).name(name).build());
         return null;
     }
 
     @Override
     public String mongodbDeploy(String name,Map<String, Object> manifest) {
-        List<ITerraformDependable> dependencies=new ArrayList<>();
+        List<Release> dependencies=new ArrayList<>();
         dependencies.add(this.argocdRelease);
-        new Manifest(construct,name,ManifestConfig.builder().manifest(manifest).build());
+        new Manifest(construct,name,ManifestConfig.builder().manifest(manifest).dependsOn(dependencies).build());
         return null;
     }
 

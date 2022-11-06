@@ -55,6 +55,7 @@ public class MainStack extends TerraformStack
 
 
 
+
         new KubernetesProvider(this,"kubernetes", KubernetesProviderConfig.builder().configPath("/home/moeid/appwrite-deployment/k8s-infrastructure/kube-config.yml").build());
         WebappInfrastructure infrastructure=new WebappInfrastructure(this,"webapp");
         //infrastructure.elasticSearchDeploy("elasticsearch","19.3.0", elasticValues);
