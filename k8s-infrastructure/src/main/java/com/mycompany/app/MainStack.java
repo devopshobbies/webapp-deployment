@@ -23,7 +23,7 @@ public class MainStack extends TerraformStack
         elasticValues.add("coordinating.replicaCount: 1");
         JsonReader reader = new JsonReader(new FileReader("src/main/java/com/mycompany/app/applications/intersectionOverunion.json"));
         Map mongomanifest = new Gson().fromJson(reader, Map.class);
-        new KubernetesProvider(this,"kubernetes", KubernetesProviderConfig.builder().configPath("kube-config.yml").build());
+        new KubernetesProvider(this,"kubernetes", KubernetesProviderConfig.builder().configPath("../../../kube-config.yml").build());
         WebappInfrastructure infrastructure=new WebappInfrastructure(this,"webapp");
         infrastructure.elasticSearchDeploy("elasticsearch","19.3.0", elasticValues);
         infrastructure.nginxIngressControllerDeploy("nginx-ingress-controller","9.3.8",null);
