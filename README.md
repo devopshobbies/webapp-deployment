@@ -2,7 +2,6 @@
 
 This is a tutorial about automated deployment to kubernetes cluster.
 
----
 
 ## Tutorials
 
