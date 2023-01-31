@@ -10,8 +10,30 @@
   tags:
     - install
 
+
 - name: Installation has been finished
   debug:
     msg: "Installation of kind version {{ kind_version }} has been finished!"
+  tags:
+    - install
+
+- name: "install kubectl"
+  shell: curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+  when: not kubectl_state.stat.exists
+  tags:
+    - install
+
+- name: "change kubectl permission"
+  shell: chmod +x kubectl
+  become: yes
+  when: not kubectl_state.stat.exists
+  tags:
+    - install
+
+    
+- name: "move kubectl "
+  shell: mv kubectl /usr/local/bin/
+  become: yes
+  when: not kubectl_state.stat.exists
   tags:
     - install

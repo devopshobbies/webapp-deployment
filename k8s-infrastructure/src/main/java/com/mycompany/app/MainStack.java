@@ -21,12 +21,12 @@ public class MainStack extends TerraformStack
         elasticValues.add("data.replicaCount: 1");
         elasticValues.add("ingest.replicaCount: 1");
         elasticValues.add("coordinating.replicaCount: 1");
-        JsonReader reader = new JsonReader(new FileReader("src/main/java/com/mycompany/app/applications/intersectionOverunion.json"));
+        JsonReader reader = new JsonReader(new FileReader("src/main/java/com/mycompany/app/applications/webapp.json"));
         Map mongomanifest = new Gson().fromJson(reader, Map.class);
-        new KubernetesProvider(this,"kubernetes", KubernetesProviderConfig.builder().configPath("../../../kube-config.yml").build());
+        new KubernetesProvider(this,"kubernetes", KubernetesProviderConfig.builder().configPath("~/.kube/config").build());
         WebappInfrastructure infrastructure=new WebappInfrastructure(this,"webapp");
-        infrastructure.elasticSearchDeploy("elasticsearch","19.3.0", elasticValues);
-        infrastructure.nginxIngressControllerDeploy("nginx-ingress-controller","9.3.8",null);
+        //infrastructure.elasticSearchDeploy("elasticsearch","19.3.0", elasticValues);
+        //infrastructure.nginxIngressControllerDeploy("nginx-ingress-controller","9.3.8",null);
         infrastructure.argocdDeploy("argo-cd","4.3.1",null);
         infrastructure.mongodbDeploy("hello-k8s",mongomanifest);
         infrastructure.prometheus("kube-prometheus","8.1.11",null);

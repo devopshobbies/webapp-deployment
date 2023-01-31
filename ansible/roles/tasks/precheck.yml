@@ -26,7 +26,7 @@
   shell: "{{ kind_install_dir }}/kind --version | awk -F ' ' '{print \"v\"$3}'"
   changed_when: false
   register: kind_installed_version
-  when: kind_status.stat.exists
+
   tags:
     - always
 
@@ -51,5 +51,12 @@
   debug:
     msg: "Installation will be skipped, the version {{ kind_version }} specified is already installed!"
   when: kind_version == kind_installed_version.stdout
+  tags:
+    - install
+
+- name: "Check If kubectl is installed"
+  stat:
+    path: "/usr/local/bin/kubectl"
+  register: kubectl_state
   tags:
     - install

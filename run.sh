@@ -1,11 +1,29 @@
 #!/bin/bash
 #====================================================================================================================================================
 server_name=$(hostname)
+masterNodes=1
+workerNodes=0
+function chooseNodesNumber(){
+    echo -ne "
+how many master nodes you want to have? (default is 1)
+$(ColorBlue 'write a number:') "
+        read a
+        masterNodes=$a
+    echo -ne "
+how many worker nodes you want to have? (default is 0)
+$(ColorBlue 'write a number:') "
+        read b
+        workerNodes=$b
+
+}
 function create_cluster() {
+    chooseNodesNumber
+    echo "master nodes: $masterNodes"
+    echo "worker nodes: $workerNodes"
     echo "Createing kind cluster... 🙃"
-    ansible-playbook ansible/kind.yml -i hosts --tags "create" -e "HOSTS=localhost control_nodes=1 worker_nodes=2 cluster_name=k8s-hello" -u thedatabaseme -k -K
+    ansible-playbook ansible/kind.yml -i hosts --tags "create" -e "HOSTS=localhost control_nodes=$masterNodes worker_nodes=$workerNodes cluster_name=k8s-hello" -u thedatabaseme -k -K
     echo "Cluster k8s-learn with 1 control-plan and two worket nodes created 🙂"
-     kubectl config view --raw --flatten=true > kube-config.yml 
+     
 }
 
 #====================================================================================================================================================
@@ -18,15 +36,18 @@ function delete_cluster() {
 function deploy_infrastructure() {
     echo "prepareing the infrastructure... 🧐"
     echo "Synthesizing... 😎"
-    cd k8s-infrastructure && cdktf synth
+    cd k8s-infrastructure && cdktf get && cdktf synth
     cd ..
     echo "terraform code generated 😀"
     cd k8s-infrastructure/cdktf.out/stacks/k8s-infrastructure &&
-    echo "initializing terraform..."
-    terraform init
-    echo "terraform initialized"
-    echo "planning terraform..."
-    terraform plan --out plan
+    # uncomment if this is the first time you want to plan the terraform
+    #.............................
+    #echo "initializing terraform..."
+    #terraform init
+    #echo "terraform initialized"
+    # echo "planning terraform..."
+    # terraform plan --out plan
+    #.............................
     echo "terraform planned"
     terraform apply
     echo "infrstructure is ready"
@@ -53,19 +74,20 @@ ColorBlue(){
 }
 #====================================================================================================================================================
 menu(){
-echo " █████   █████          ████  ████                      █████       ████████          
-░░███   ░░███          ░░███ ░░███                     ░░███       ███░░░░███         
- ░███    ░███   ██████  ░███  ░███   ██████             ░███ █████░███   ░███   █████ 
- ░███████████  ███░░███ ░███  ░███  ███░░███ ██████████ ░███░░███ ░░████████   ███░░  
- ░███░░░░░███ ░███████  ░███  ░███ ░███ ░███░░░░░░░░░░  ░██████░   ███░░░░███ ░░█████ 
- ░███    ░███ ░███░░░   ░███  ░███ ░███ ░███            ░███░░███ ░███   ░███  ░░░░███
- █████   █████░░██████  █████ █████░░██████             ████ █████░░████████   ██████ 
-░░░░░   ░░░░░  ░░░░░░  ░░░░░ ░░░░░  ░░░░░░             ░░░░ ░░░░░  ░░░░░░░░   ░░░░░░ "
+echo "
+██╗  ██╗███████╗██╗     ██╗      ██████╗       ██╗  ██╗ █████╗ ███████╗
+██║  ██║██╔════╝██║     ██║     ██╔═══██╗      ██║ ██╔╝██╔══██╗██╔════╝
+███████║█████╗  ██║     ██║     ██║   ██║█████╗█████╔╝ ╚█████╔╝███████╗
+██╔══██║██╔══╝  ██║     ██║     ██║   ██║╚════╝██╔═██╗ ██╔══██╗╚════██║
+██║  ██║███████╗███████╗███████╗╚██████╔╝      ██║  ██╗╚█████╔╝███████║
+╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚═════╝       ╚═╝  ╚═╝ ╚════╝ ╚══════╝
+                                                                       "
+
 echo -ne "
 My First Menu
 $(ColorGreen '1)') Create a kubernetes cluster
-$(ColorGreen '2)') Delete the kubernetes cluster
-$(ColorGreen '3)') prepare the infrastructure
+$(ColorGreen '2)') Delete kubernetes cluster
+$(ColorGreen '3)') deploy infrastructure
 $(ColorBlue 'Choose an option:') "
         read a
         case $a in

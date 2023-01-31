@@ -15,7 +15,7 @@
       "helm": {
         "parameters": null
       },
-      "chart": "hello-k8s",
+      "chart": "k8s-hello",
       "repoURL": "https://devopshobbies.github.io/k8s-hello-chart/",
       "targetRevision": "0.1.1"
     },

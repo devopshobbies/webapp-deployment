@@ -44,7 +44,7 @@ public class WebappInfrastructure implements IInfrastructure {
         this.setConstruct(construct);
         this.setName(name);
 
-        helm=new HelmProvider(this.construct,this.name, HelmProviderConfig.builder().kubernetes(HelmProviderKubernetes.builder().configPath("/home/moeid/appwrite-deployment/k8s-infrastructure/kube-config.yml").build()).build());
+        helm=new HelmProvider(this.construct,this.name, HelmProviderConfig.builder().kubernetes(HelmProviderKubernetes.builder().configPath("~/.kube/config").build()).build());
     }
 
     @Override

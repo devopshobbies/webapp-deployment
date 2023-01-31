@@ -11,6 +11,5 @@ public interface IInfrastructure {
     String nginxIngressControllerDeploy(String name,String version, List<String> vars);
     String argocdDeploy(String name,String version, List<String> vars);
     String prometheus(String name,String version,List<String> vars);
-
     String mongodbDeploy(String name,Map<String,Object> manifest);
 }
