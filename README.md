@@ -592,6 +592,58 @@ webapp.json
 
 ```
 
+### CI/CD
+
+In the following file you can see the github actions file
+
+release.yml
+
+```yaml
+name: Release Charts
+on:
+  push:
+    branches: [main]
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Configure git
+        run: |
+           git config user.name "$GITHUB_ACTOR"
+           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.0.0
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          tags: moeidheidari/hello-k8s:latest
+```
+
+to make the cicd pipeline working you need to define two secrets in your github account.
+
+- dockerhub username
+
+- dockerhub token
+
+**Github**
+
+go to repository settings-> Secrets and variables - >actions-> new repository secret.
+
+![](assets/images/github.png)
+
 ### Hello-k8s helm chart
 
 ```bash
